@@ -1,0 +1,81 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filter Kelulusan | Akademik</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+<div class="app">
+
+    {{template "sidebar" "lulus"}}
+
+    <main class="main-content">
+        <header class="topbar">
+            <div>
+                <span class="breadcrumb">Halaman / Filter Kelulusan</span>
+                <h2>Filter Kelulusan</h2>
+            </div>
+        </header>
+
+        <section class="welcome">
+            <div>
+                <span class="welcome-tag">ACADEMIC EVALUATION</span>
+                <h1>Filter Kelulusan Mahasiswa</h1>
+                <p>Menampilkan mahasiswa berdasarkan hasil nilai akhir minimal 70.</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-heading">
+                <div>
+                    <h3>Hasil Filter</h3>
+                    <p>Daftar mahasiswa yang memenuhi kriteria kelulusan</p>
+                </div>
+                <span class="status-online">Nilai Minimal 70</span>
+            </div>
+
+            <div class="panel table-panel">
+                <div class="table-info">
+                    <strong>Mahasiswa Lulus</strong>
+                    <span>Hasil operasi Functional Filter</span>
+                </div>
+
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>NIM</th>
+                                <th>Nama Mahasiswa</th>
+                                <th>Nilai Akhir</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{range $i, $m := .Mahasiswa}}
+                            <tr>
+                                <td>{{inc $i}}</td>
+                                <td>{{$m.NIM}}</td>
+                                <td><strong>{{$m.Nama}}</strong></td>
+                                <td><strong>{{printf "%.2f" $m.NilaiAkhir}}</strong></td>
+                                <td><span class="status-badge {{if eq $m.Status "LULUS"}}status-lulus{{else}}status-tidak{{end}}">{{$m.Status}}</span></td>
+                            </tr>
+                            {{else}}
+                            <tr>
+                                <td colspan="5" class="empty-data">
+                                    Belum ada mahasiswa yang memenuhi kriteria kelulusan.
+                                </td>
+                            </tr>
+                            {{end}}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+</div>
+</body>
+</html>

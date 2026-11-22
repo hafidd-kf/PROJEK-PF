@@ -1,0 +1,80 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Konversi Grade | Akademik</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+<div class="app">
+
+    {{template "sidebar" "grade"}}
+
+    <main class="main-content">
+        <header class="topbar">
+            <div>
+                <span class="breadcrumb">Halaman / Konversi Grade</span>
+                <h2>Konversi Grade</h2>
+            </div>
+        </header>
+
+        <section class="welcome">
+            <div>
+                <span class="welcome-tag">GRADE CONVERSION</span>
+                <h1>Konversi Nilai Akademik</h1>
+                <p>Melihat hasil perubahan nilai angka menjadi grade huruf.</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-heading">
+                <div>
+                    <h3>Hasil Konversi Nilai</h3>
+                    <p>Transformasi data menggunakan operasi Map</p>
+                </div>
+            </div>
+
+            <div class="panel table-panel">
+                <div class="table-info">
+                    <strong>Daftar Grade Mahasiswa</strong>
+                    <span>Academic Grade Report</span>
+                </div>
+
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>NIM</th>
+                                <th>Nama Mahasiswa</th>
+                                <th>Nilai Akhir</th>
+                                <th>Grade Huruf</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{range $i, $m := .Mahasiswa}}
+                            <tr>
+                                <td>{{inc $i}}</td>
+                                <td>{{$m.NIM}}</td>
+                                <td><strong>{{$m.Nama}}</strong></td>
+                                <td>{{printf "%.2f" $m.NilaiAkhir}}</td>
+                                <td><span class="grade-badge">{{$m.Grade}}</span></td>
+                                <td><span class="status-badge {{if eq $m.Status "LULUS"}}status-lulus{{else}}status-tidak{{end}}">{{$m.Status}}</span></td>
+                            </tr>
+                            {{else}}
+                            <tr>
+                                <td colspan="6" class="empty-data">Belum ada data nilai mahasiswa.</td>
+                            </tr>
+                            {{end}}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+</div>
+</body>
+</html>

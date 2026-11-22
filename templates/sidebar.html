@@ -1,0 +1,57 @@
+{{define "sidebar"}}
+    <aside class="sidebar">
+        <div class="brand">
+            <div>
+                <h2>AKADEMIK</h2>
+                <span>Student Management</span>
+            </div>
+        </div>
+
+        <div class="menu-label">MENU UTAMA</div>
+
+        <a href="/" class="nav-link{{if eq . "dashboard"}} active{{end}}">
+            <span class="nav-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/>
+                </svg>
+            </span>
+            <span>Dashboard</span>
+        </a>
+
+        <a href="/mahasiswa" class="nav-link{{if eq . "mahasiswa"}} active{{end}}">
+            <span class="nav-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                </svg>
+            </span>
+            <span>Data Mahasiswa</span>
+        </a>
+
+        <a href="/lulus" class="nav-link{{if eq . "lulus"}} active{{end}}">
+            <span class="nav-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.66 2.69 3 6 3s6-1.34 6-3v-5"/>
+                </svg>
+            </span>
+            <span>Filter Kelulusan</span>
+        </a>
+
+        <a href="/grade" class="nav-link{{if eq . "grade"}} active{{end}}">
+            <span class="nav-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M17 2l4 4-4 4"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><path d="M7 22l-4-4 4-4"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/>
+                </svg>
+            </span>
+            <span>Konversi Grade</span>
+        </a>
+
+        <a href="/statistik" class="nav-link{{if eq . "statistik"}} active{{end}}">
+            <span class="nav-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>
+                </svg>
+            </span>
+            <span>Statistik Kelas</span>
+        </a>
+    </aside>
+{{end}}

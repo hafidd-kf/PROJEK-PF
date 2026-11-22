@@ -1,0 +1,98 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Mahasiswa | Akademik</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+<div class="app">
+
+    {{template "sidebar" "mahasiswa"}}
+
+    <main class="main-content">
+        <header class="topbar">
+            <div>
+                <span class="breadcrumb">Halaman / Data Mahasiswa</span>
+                <h2>Data Mahasiswa</h2>
+            </div>
+        </header>
+
+        <section class="welcome">
+            <div>
+                <span class="welcome-tag">STUDENT MANAGEMENT</span>
+                <h1>Data Mahasiswa</h1>
+                <p>Kelola data mahasiswa dan nilai akademik secara terstruktur.</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-heading">
+                <div>
+                    <h3>Daftar Mahasiswa</h3>
+                    <p>Seluruh data mahasiswa yang tersimpan di database</p>
+                </div>
+                <a href="/mahasiswa/tambah" class="btn-primary">+ Tambah Mahasiswa</a>
+            </div>
+
+            <div class="panel table-panel">
+                <div class="table-info">
+                    <strong>Data Nilai Mahasiswa</strong>
+                    <span>Database PostgreSQL</span>
+                </div>
+
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>NIM</th>
+                                <th>Nama</th>
+                                <th>Tugas</th>
+                                <th>UTS</th>
+                                <th>UAS</th>
+                                <th>Nilai Akhir</th>
+                                <th>Status</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{range $i, $m := .Mahasiswa}}
+                            <tr>
+                                <td>{{inc $i}}</td>
+                                <td>{{$m.NIM}}</td>
+                                <td><strong>{{$m.Nama}}</strong></td>
+                                <td>{{$m.Tugas}}</td>
+                                <td>{{$m.UTS}}</td>
+                                <td>{{$m.UAS}}</td>
+                                <td><strong>{{printf "%.2f" $m.NilaiAkhir}}</strong></td>
+                                <td>
+                                    <span class="status-badge {{if eq $m.Status "LULUS"}}status-lulus{{else}}status-tidak{{end}}">{{$m.Status}}</span>
+                                </td>
+                                <td>
+                                    <div class="action-group">
+                                        <a class="btn-edit" href="/mahasiswa/edit?id={{$m.ID}}">Edit</a>
+                                        <form action="/mahasiswa/hapus" method="POST"
+                                              onsubmit="return confirm('Yakin ingin menghapus mahasiswa ini?')">
+                                            <input type="hidden" name="id" value="{{$m.ID}}">
+                                            <button type="submit" class="btn-delete">Hapus</button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                            {{else}}
+                            <tr>
+                                <td colspan="9" class="empty-data">Belum ada data mahasiswa.</td>
+                            </tr>
+                            {{end}}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+</div>
+</body>
+</html>

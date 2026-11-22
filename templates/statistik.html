@@ -1,0 +1,141 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Statistik Kelas | Akademik</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+<div class="app">
+
+    {{template "sidebar" "statistik"}}
+
+    <main class="main-content">
+        <header class="topbar">
+            <div>
+                <span class="breadcrumb">Halaman / Statistik Kelas</span>
+                <h2>Statistik Kelas</h2>
+            </div>
+        </header>
+
+        <section class="welcome">
+            <div>
+                <span class="welcome-tag">ACADEMIC ANALYTICS</span>
+                <h1>Statistik Akademik Kelas</h1>
+                <p>Analisis keseluruhan hasil nilai dan perkembangan akademik mahasiswa.</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-heading">
+                <div>
+                    <h3>Ringkasan Statistik</h3>
+                    <p>Hasil analisis data seluruh mahasiswa</p>
+                </div>
+                <span class="status-online">Data Teranalisis</span>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-top">
+                        <span>Total Mahasiswa</span>
+                    </div>
+                    <h2>{{.Total}}</h2>
+                    <p>Jumlah seluruh mahasiswa</p>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-top">
+                        <span>Rata-rata Kelas</span>
+                    </div>
+                    <h2>{{printf "%.2f" .RataRata}}</h2>
+                    <p>Rata-rata nilai akhir</p>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-top">
+                        <span>Mahasiswa Lulus</span>
+                    </div>
+                    <h2>{{.Lulus}}</h2>
+                    <p>Nilai akhir minimal 70</p>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-top">
+                        <span>Tidak Lulus</span>
+                    </div>
+                    <h2>{{.TidakLulus}}</h2>
+                    <p>Nilai akhir di bawah 70</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-grid">
+            <div class="panel">
+                <div class="panel-heading">
+                    <div>
+                        <h3>Nilai Tertinggi</h3>
+                        <p>Mahasiswa dengan hasil akademik terbaik</p>
+                    </div>
+                </div>
+
+                <h2 class="highlight-number">{{printf "%.2f" .Tertinggi}}</h2>
+                <p class="highlight-name">{{.NamaTinggi}}</p>
+            </div>
+
+            <div class="panel">
+                <div class="panel-heading">
+                    <div>
+                        <h3>Nilai Terendah</h3>
+                        <p>Mahasiswa dengan nilai akhir terendah</p>
+                    </div>
+                </div>
+
+                <h2 class="highlight-number">{{printf "%.2f" .Terendah}}</h2>
+                <p class="highlight-name">{{.NamaRendah}}</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="panel">
+                <div class="panel-heading">
+                    <div>
+                        <h3>Analisis Statistik</h3>
+                        <p>Ringkasan hasil pengolahan data menggunakan Reduce</p>
+                    </div>
+                </div>
+
+                <div class="analysis-list">
+                    <div>
+                        <span>Total mahasiswa</span>
+                        <strong>{{.Total}} orang</strong>
+                    </div>
+                    <div>
+                        <span>Rata-rata nilai kelas</span>
+                        <strong>{{printf "%.2f" .RataRata}}</strong>
+                    </div>
+                    <div>
+                        <span>Jumlah mahasiswa lulus</span>
+                        <strong>{{.Lulus}} orang</strong>
+                    </div>
+                    <div>
+                        <span>Jumlah mahasiswa tidak lulus</span>
+                        <strong>{{.TidakLulus}} orang</strong>
+                    </div>
+                    <div>
+                        <span>Nilai tertinggi</span>
+                        <strong>{{printf "%.2f" .Tertinggi}}</strong>
+                    </div>
+                    <div>
+                        <span>Nilai terendah</span>
+                        <strong>{{printf "%.2f" .Terendah}}</strong>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</div>
+</body>
+</html>

@@ -1,0 +1,90 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | Akademik</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+
+<div class="app">
+
+    <!-- SIDEBAR -->
+    {{template "sidebar" "dashboard"}}
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <!-- HEADER -->
+        <header class="topbar">
+            <div>
+                <span class="breadcrumb">Halaman / Dashboard</span>
+                <h2>Dashboard</h2>
+            </div>
+        </header>
+
+        <!-- WELCOME -->
+        <section class="welcome">
+            <div>
+                <span class="welcome-tag">ACADEMIC OVERVIEW</span>
+                <h1>Selamat Datang di Sistem Akademik</h1>
+                <p>
+                    Kelola data mahasiswa, pantau hasil akademik,
+                    dan analisis perkembangan nilai dalam satu tempat.
+                </p>
+            </div>
+        </section>
+
+        <!-- STATISTIK -->
+        <section class="section">
+            <div class="section-heading">
+                <div>
+                    <h3>Ringkasan Akademik</h3>
+                    <p>Informasi keseluruhan nilai mahasiswa</p>
+                </div>
+                <a href="/statistik" class="text-link">Lihat statistik →</a>
+            </div>
+
+            <div class="stats-grid">
+
+                <div class="stat-card">
+                    <div class="stat-top">
+                        <span>Total Mahasiswa</span>
+                    </div>
+                    <h2>{{.Statistik.Total}}</h2>
+                    <p>Jumlah seluruh mahasiswa</p>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-top">
+                        <span>Rata-rata Kelas</span>
+                    </div>
+                    <h2>{{printf "%.2f" .Statistik.RataRata}}</h2>
+                    <p>Rata-rata nilai akhir</p>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-top">
+                        <span>Mahasiswa Lulus</span>
+                    </div>
+                    <h2>{{.Statistik.Lulus}}</h2>
+                    <p>Nilai akhir minimal 70</p>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-top">
+                        <span>Tidak Lulus</span>
+                    </div>
+                    <h2>{{.Statistik.TidakLulus}}</h2>
+                    <p>Nilai akhir di bawah 70</p>
+                </div>
+
+            </div>
+        </section>
+    </main>
+</div>
+
+</body>
+</html>
